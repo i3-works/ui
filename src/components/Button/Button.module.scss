@@ -1,15 +1,104 @@
 .button {
-    background-color: #007bff;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  
-    &:hover {
-      background-color: #0056b3;
-    }
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 2px solid transparent; /* ★ 全ボタン共通でborderあり */
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s, border-color 0.3s;
+  color: white;
+  padding: 8px 16px;
+  overflow: hidden;
+  min-width: 100px;
+
+  &:hover:not(:disabled) {
+    opacity: 0.8;
   }
-  
+
+  &:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+}
+
+/* バリエーション */
+.primary {
+  background-color: #007bff;
+  border-color: transparent; /* ★ 常にborderありだけど透明 */
+}
+
+.secondary {
+  background-color: #6c757d;
+  border-color: transparent;
+}
+
+.danger {
+  background-color: #dc3545;
+  border-color: transparent;
+}
+
+/* Ghostバリアント */
+.ghost {
+  background-color: transparent;
+  border-color: #007bff; /* 枠線色だけ変える */
+  color: #007bff;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(0, 123, 255, 0.1);
+  }
+
+  &:active:not(:disabled) {
+    background-color: rgba(0, 123, 255, 0.2);
+    transform: scale(0.96);
+  }
+
+  &:disabled {
+    border-color: #cccccc;
+    color: #cccccc;
+    background-color: transparent;
+  }
+}
+
+
+.small { font-size: 14px; padding: 4px 8px; }
+.medium { font-size: 16px; padding: 8px 16px; }
+.large { font-size: 18px; padding: 12px 24px; }
+
+.content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* スピナーオーバーレイ用 */
+.spinnerWrapper {
+  position: absolute;
+  inset: 0; /* top: 0; left: 0; bottom: 0; right: 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.4); /* optional: 半透明でローディング感出す */
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
