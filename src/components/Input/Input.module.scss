@@ -1,0 +1,169 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--input-label-color, #333);
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--input-border-color, #ccc);
+  border-radius: 4px;
+  background-color: var(--input-bg-color, #fff);
+  padding: 0 8px;
+  transition: border-color 0.2s, background-color 0.2s;
+
+  &:focus-within {
+    border-color: var(--color-primary, #007bff);
+  }
+}
+
+.input {
+  flex: 1;
+  padding: 8px 4px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  outline: none;
+  color: var(--input-text-color, #000);
+
+  &:placeholder-shown {
+    text-overflow: ellipsis;
+  }
+
+  /* disabled時のスタイル */
+  &:disabled {
+    background-color: transparent;
+    color: #aaa;
+    cursor: not-allowed;
+  }
+
+  /* readOnly時のスタイル */
+  &:read-only {
+    background-color: transparent;
+    color: #444;
+    cursor: text;
+  }
+}
+
+
+.prefix,
+.suffix {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  color: #999;
+  margin: 0 4px;
+}
+
+/* パスワードアイコン用のボタン */
+.iconButton {
+  all: unset;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+
+  &:hover {
+    color: var(--color-primary, #007bff);
+  }
+}
+
+/* バリアント */
+.outlined {
+  /* サイズ */
+  &.small .input {
+    padding: 6px 4px;
+  }
+
+  &.medium .input {
+    padding: 8px 4px;
+  }
+
+  &.large .input {
+    padding: 12px 6px;
+  }
+}
+
+.borderless {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+
+  .inputContainer {
+    border: none;
+    background-color: transparent;
+  }
+
+  /* サイズ */
+  &.small .input {
+    padding: 7px 5px;
+  }
+
+  &.medium .input {
+    padding: 9px 5px;
+  }
+
+  &.large .input {
+    padding: 13px 7px;
+  }
+}
+
+.error .inputContainer {
+  border-color: var(--color-danger, #dc3545);
+}
+
+.error .input {
+  color: var(--color-danger-text, #dc3545);
+}
+
+/* サイズ */
+.small .input {
+  font-size: 12px;
+}
+
+.medium .input {
+  font-size: 14px;
+}
+
+.large .input {
+  font-size: 16px;
+}
+
+.description {
+  font-size: 12px;
+  color: #666;
+}
+
+.disabled,
+.readonly {
+  .inputContainer {
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    color: #aaa;
+
+    input::placeholder {
+      color: #aaa;
+    }
+  }
+}
+
+.disabled {
+  .inputContainer
+    input {
+    cursor: not-allowed;
+  }
+}
+
+.error {
+  font-size: 12px;
+  color: var(--color-danger, #dc3545);
+}
