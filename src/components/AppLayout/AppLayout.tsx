@@ -5,7 +5,8 @@ import { useAppLayout } from './AppLayoutProvider';
 import type { AppLayoutComponent } from './AppLayout.types';
 
 export const AppLayout: AppLayoutComponent = ({ children }) => {
-  const { Header, Left, Main, Right, Footer } = useSlots(children);
+  // AppBarを追加
+  const { Header, AppBar, Left, Main, Right, Footer } = useSlots(children);
   const {
     isLeftPaneShow,
     isRightPaneShow,
@@ -24,10 +25,16 @@ export const AppLayout: AppLayoutComponent = ({ children }) => {
 
   return (
     <div className={layoutClass}>
-      {/* ← ★ Headerスロットは空でもgridに対応するよう必ず描画 */}
+      {/* Header */}
       <div className={styles.header}>
         {Header}
       </div>
+      {/* AppBar（Headerの下） */}
+      {AppBar && (
+        <div className={styles.appBar}>
+          {AppBar}
+        </div>
+      )}
 
       <div className={styles.body}>
         {isLeftPaneShow && Left && <div style={{ width: leftPaneWidth }}>{Left}</div>}
@@ -40,11 +47,13 @@ export const AppLayout: AppLayoutComponent = ({ children }) => {
   );
 };
 
+// スロットコンポーネントを追加
 AppLayout.Header = ({ children, visible = true }) => (
   <header className={styles.header}>
     {visible ? children : null}
   </header>
 );
+AppLayout.AppBar = ({ children }: { children: React.ReactNode }) => children;
 AppLayout.Left = ({ children }) => <aside className={styles.left}>{children}</aside>;
 AppLayout.Main = ({ children }) => <main className={styles.main}>{children}</main>;
 AppLayout.Right = ({ children }) => <aside className={styles.right}>{children}</aside>;

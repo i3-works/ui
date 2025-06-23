@@ -19,6 +19,7 @@ export function useSlots(children: ReactNode) {
 
   return {
     Header: findSlot(AppLayout.Header),
+    AppBar: findSlot(AppLayout.AppBar), 
     Left: findSlot(AppLayout.Left),
     Main: findSlot(AppLayout.Main),
     Right: findSlot(AppLayout.Right),

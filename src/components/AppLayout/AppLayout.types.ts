@@ -7,6 +7,7 @@ export type SlotComponent = FC<{
 
 export interface AppLayoutComponent extends FC<{ children: ReactNode }> {
   Header: SlotComponent;
+  AppBar: SlotComponent;
   Left: SlotComponent;
   Main: SlotComponent;
   Right: SlotComponent;

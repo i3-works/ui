@@ -1,0 +1,29 @@
+.appBar {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 12px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+
+  .left, .center, .right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .left {
+    flex: 1;
+    justify-content: flex-start;
+  }
+
+  .center {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .right {
+    flex: 1;
+    justify-content: flex-end;
+  }
+}
