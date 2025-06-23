@@ -1,0 +1,87 @@
+$header-bg: #f8f9fa;
+$footer-bg: #dee2e6;
+$left-bg: #f1f3f5;
+$main-bg: #ffffff;
+$right-bg: #f8f0fc;
+
+.root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "body"
+    "footer";
+  height: 100dvh;
+  width: 100%;
+
+  // header 非表示対応
+  &.noHeader {
+    grid-template-rows: 0 1fr auto;
+  }
+
+  &.withLeft.withRight .body {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "left main right";
+  }
+
+  &.withLeft.noRight .body {
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "left main";
+  }
+
+  &.noLeft.withRight .body {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "main right";
+  }
+
+  &.noLeft.noRight .body {
+    grid-template-columns: 1fr;
+    grid-template-areas: "main";
+  }
+}
+
+.body {
+  display: grid;
+  overflow: hidden;
+  height: 100%;
+}
+
+.header {
+  grid-area: header;
+  background-color: $header-bg;
+  height: auto; // or fixed height
+}
+
+.footer {
+  grid-area: footer;
+  background-color: $footer-bg;
+  // padding removed
+}
+
+.left,
+.right {
+  min-width: 0;
+  overflow-y: auto;
+  height: 100%;
+  transition: all 0.2s ease;
+}
+
+.left {
+  grid-area: left;
+  background-color: $left-bg;
+  width: 300px;
+}
+
+.main {
+  grid-area: main;
+  background-color: $main-bg;
+  padding: 16px;
+  overflow-y: auto;
+  min-width: 0;
+}
+
+.right {
+  grid-area: right;
+  background-color: $right-bg;
+  width: 250px;
+}
